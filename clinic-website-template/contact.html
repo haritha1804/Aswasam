@@ -43,32 +43,33 @@
 
 
     <!-- Topbar Start -->
-    <div class="container-fluid  bg-light p-0 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container-fluid  bg-green p-0 wow fadeIn" data-wow-delay="0.1s">
         <div class="row gx-0 d-none d-lg-flex">
             <div class="col-lg-7 px-5 text-start">
                 <div class="h-100 d-inline-flex align-items-center py-3 me-4">
-                    <small class="fa fa-map-marker-alt text-primary me-2"></small>
+                    <small class="fa fa-map-marker-alt text-green me-2"></small>
                     <small>Madackal, Cherthala</small>
                 </div>
                 <div class="h-100 d-inline-flex align-items-center py-3">
-                    <small class="far fa-clock text-primary me-2"></small>
+                    <small class="far fa-clock text-green me-2"></small>
                     <small>Mon - Fri : 09.30 AM - 05.00 PM</small>
                 </div>
             </div>
             <div class="col-lg-5 px-5 text-end">
                 <div class="h-100 d-inline-flex align-items-center py-3 me-4">
-                    <small class="fa fa-phone-alt text-primary me-2"></small>
+                    <small class="fa fa-phone-alt text-green me-2"></small>
                     <small>8075040440</small>
                 </div>
                 <div class="h-100 d-inline-flex align-items-center">
-                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href=""><i class="fab fa-facebook-f"></i></a>
+                    <!-- <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href=""><i class="fab fa-facebook-f"></i></a>
                     <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href=""><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href=""><i class="fab fa-linkedin-in"></i></a>
-                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-0" href="https://www.instagram.com/aswasam_ayurveda?igsh=MWQ2NmZtejVkbGlnNA=="><i class="fab fa-instagram"></i></a>
+                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href=""><i class="fab fa-linkedin-in"></i></a> -->
+                    <a class="btn btn-sm-square rounded-circle bg-white text-green me-0" href="https://www.instagram.com/aswasam_ayurveda?igsh=MWQ2NmZtejVkbGlnNA=="><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Topbar End -->
     <!-- Topbar End -->
 
 
@@ -94,8 +95,8 @@
                     <a href="about.html" class="nav-item nav-link ">About</a>
                     <a href="service.html" class="nav-item nav-link">Service</a>
                     <a href="contact.html" class="nav-item nav-link text-green active">Contact</a>
-                    <a href="./service.html" class="btn custom-btn rounded-full py-4 px-1 d-none d-lg-block">
-                        Appointment <i class="fa fa-arrow-right ms-2"></i>
+                    <a href="./service.html" class="btn custom-btn rounded-full py-4 px-1 d-flex justify-content-center align-items-center text-center" style="margin-top: 10px; width: 100%;">
+                        Appointment<i class="fa fa-arrow-right ms-2"></i>
                     </a>
                 </div>
             </div>
@@ -152,7 +153,7 @@
                 <ol class="breadcrumb text-uppercase mb-0">
                     <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
                     <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
-                    <li class="breadcrumb-item text-primary active" aria-current="page">Contact</li>
+                    <li class="breadcrumb-item text-green active" aria-current="page">Contact</li>
                 </ol>
             </nav>
         </div>
@@ -198,41 +199,90 @@
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                    <div id="successMessage" style="display: none;" class="alert alert-success text-center">
+                      Thank you! Your message has been successfully sent. We will get back to you soon.
+                    </div>
+                    <div class="bg-green rounded p-5">
+                      <p class="d-inline-block border rounded-pill py-1 px-4">Contact Us</p>
+                      <h1 class="mb-4">Have Any Query? Please Contact Us!</h1>
+                      <!-- <p class="mb-4">
+                        The contact form is currently inactive. Get a functional and working contact form with Ajax & PHP in a few minutes.
+                        Just copy and paste the files, add a little code and you're done.
+                        <a href="https://htmlcodex.com/contact-form">Download Now</a>.
+                      </p>
+                   -->
+                      <form class="form-contact contact_form" action="contact_process.php" method="post" id="contactform" novalidate="novalidate">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <input class="form-control valid" name="name" id="name" type="text" required placeholder="Enter your name" />
+                            </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <input class="form-control valid" name="email" required id="email" type="email" placeholder="Email" />
+                            </div>
+                          </div>
+                          <div class="col-12 my-2">
+                            <div class="form-group">
+                              <input class="form-control" name="phoneNumber" required id="phoneNumber" type="text" placeholder="Enter PhoneNumber" />
+                            </div>
+                          </div>
+                          <div class="col-12">
+                            <div class="form-group">
+                              <textarea class="form-control w-100" name="message" id="message" cols="30" rows="9" required placeholder="Enter Message"></textarea>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group mt-3">
+                            <button type="submit" id="s-btn" class="button button-contactForm boxed-btn" style="background-color: #28a745; color: white; border: none; border-radius: 50px; padding: 15px 30px; font-size: 18px; font-weight: bold; cursor: pointer; transition: background-color 0.3s ease;">
+                                Send
+                            </button>
+                                                    </div>
+                        <div class="form-group mt-3">
+                          <button type="submit" class="button button-contactForm boxed-btn" id="loading" style="display: none; background-color: #28a745; color: white; border: none; border-radius: 50px; padding: 15px 30px; font-size: 18px; font-weight: bold; cursor: pointer; transition: background-color 0.3s ease;">Submitting...</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  
+                  <!-- JavaScript for Validation -->
+                  <script>
+                    document.getElementById('contactform').addEventListener('submit', function(event) {
+                      // Get form fields
+                      var name = document.getElementById('name').value.trim();
+                      var email = document.getElementById('email').value.trim();
+                      var phoneNumber = document.getElementById('phoneNumber').value.trim();
+                      var message = document.getElementById('message').value.trim();
+                  
+                      // Check if fields have values
+                      if (!name || !email || !phoneNumber || !message) {
+                        // Prevent form submission if any field is empty
+                        event.preventDefault();
+                        alert("Please fill in all required fields.");
+                      } else {
+                        // Show the loading button and hide the send button during submission
+                        document.getElementById('s-btn').style.display = 'none';
+                        document.getElementById('loading').style.display = 'block';
+                      }
+                    });
+                  </script>
+                  
+                <!-- <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                    <div
+            id="successMessage"
+            style="display: none;"
+            class="alert alert-success text-center"
+          >
+            Thank you! Your message has been successfully sent. We will get back
+            to you soon.
+          </div>
                     <div class="bg-light rounded p-5">
                         <p class="d-inline-block border rounded-pill py-1 px-4">Contact Us</p>
                         <h1 class="mb-4">Have Any Query? Please Contact Us!</h1>
                         <p class="mb-4">The contact form is currently inactive. Get a functional and working contact form with Ajax & PHP in a few minutes. Just copy and paste the files, add a little code and you're done. <a href="https://htmlcodex.com/contact-form">Download Now</a>.</p>
-                        <!-- <form>
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control" id="name" placeholder="Your Name">
-                                        <label for="name">Your Name</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input type="email" class="form-control" id="email" placeholder="Your Email">
-                                        <label for="email">Your Email</label>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control" id="subject" placeholder="Subject">
-                                        <label for="subject">Subject</label>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-floating">
-                                        <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 100px"></textarea>
-                                        <label for="message">Message</label>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <button class="btn w-100 py-3"style="background-color:#076612" type="submit">Send Message</button>
-                                </div>
-                            </div>
-                        </form> -->
+                       
+                    
                         <form
               class="form-contact contact_form"
               action="contact_process.php"
@@ -319,12 +369,10 @@
                 </button>
               </div></form>
                     </div>
-                </div>
+                </div> -->
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                     <div class="h-100" style="min-height: 400px;">
-                        <iframe class="rounded w-100 h-100" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126774.35206251638!2d74.86311917406587!3d12.9715987025064!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba35b0004dcd2e1%3A0x123456789abcdef!2sYourLocationName!5e0!3m2!1sen!2sin!4v1616953267805!5m2!1sen!2sin" frameborder="0" allowfullscreen="" aria-hidden="false"
-                        tabindex="0"></iframe>
-
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3932.9210677288324!2d76.31567077450524!3d9.687778078330359!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b087d7ada284ebd%3A0x1c0f29d12d80c666!2sAswasam%20Ayurvedic%20clinic%20and%20panchakarma%20centre!5e0!3m2!1sen!2sin!4v1729073797945!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         <!-- <iframe class="rounded w-100 h-100"
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001156.4288297426!2d-78.01371936852176!3d42.72876761954724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccc4bf0f123a5a9%3A0xddcfc6c1de189567!2sNew%20York%2C%20USA!5e0!3m2!1sen!2sbd!4v1603794290143!5m2!1sen!2sbd"
                         frameborder="0" allowfullscreen="" aria-hidden="false"
@@ -342,10 +390,10 @@
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
-                    <h5 class="text-light mb-4">Address</h5>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt"></i>  Madackal Cherthala</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>8075040440</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>aswasamayur@gmail.com</p>
+                    <h5 class="text-white mb-4">Address</h5>
+                    <p class="mb-2 text-white"><i class="fa fa-map-marker-alt"></i>  Madackal Cherthala</p>
+                    <p class="mb-2 text-white"><i class="fa fa-phone-alt me-3"></i>8075040440</p>
+                    <p class="mb-2 text-white"><i class="fa fa-envelope me-3"></i>aswasamayur@gmail.com</p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-facebook-f"></i></a>

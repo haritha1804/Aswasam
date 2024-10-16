@@ -202,7 +202,7 @@
                         <p class="d-inline-block border rounded-pill py-1 px-4">Contact Us</p>
                         <h1 class="mb-4">Have Any Query? Please Contact Us!</h1>
                         <p class="mb-4">The contact form is currently inactive. Get a functional and working contact form with Ajax & PHP in a few minutes. Just copy and paste the files, add a little code and you're done. <a href="https://htmlcodex.com/contact-form">Download Now</a>.</p>
-                        <form>
+                        <!-- <form>
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <div class="form-floating">
@@ -232,7 +232,92 @@
                                     <button class="btn w-100 py-3"style="background-color:#076612" type="submit">Send Message</button>
                                 </div>
                             </div>
-                        </form>
+                        </form> -->
+                        <form
+              class="form-contact contact_form"
+              action="contact_process.php"
+              method="post"
+              id="contactform"
+              novalidate="novalidate"
+            >
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <input
+                      class="form-control valid"
+                      name="name"
+                      id="name"
+                      type="text"
+                      required
+                      onfocus="this.placeholder = ''"
+                      onblur="this.placeholder = 'Enter your name'"
+                      placeholder="Enter your name"
+                    />
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <input
+                      class="form-control valid"
+                      name="email"
+                      required
+                      id="email"
+                      type="email"
+                      onfocus="this.placeholder = ''"
+                      onblur="this.placeholder = 'Enter email address'"
+                      placeholder="Email"
+                    />
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group">
+                    <input
+                      class="form-control"
+                      name="phoneNumber"
+                      required
+                      id="phoneNumber"
+                      type="text"
+                      onfocus="this.placeholder = ''"
+                      onblur="this.placeholder = 'Enter PhoneNumber'"
+                      placeholder="Enter PhoneNumber"
+                    />
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group">
+                    <textarea
+                      class="form-control w-100"
+                      name="message"
+                      id="message"
+                      cols="30"
+                      rows="9"
+                      onfocus="this.placeholder = ''"
+                      onblur="this.placeholder = 'Enter Message'"
+                      required
+                      placeholder="Enter Message"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group mt-3">
+                <button
+                  type="submit"
+                  id="s-btn"
+                  class="button button-contactForm boxed-btn"
+                >
+                  Send
+                </button>
+              </div>
+              <div class="form-group mt-3">
+                <button
+                  type="submit"
+                  class="button button-contactForm boxed-btn"
+                  id="loading"
+                  style="display: none;"
+                >
+                  Submitting...
+                </button>
+              </div></form>
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
@@ -286,11 +371,33 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h5 class="text-light mb-4">Newsletter</h5>
+                    <div
+                  id="successMessage1"
+                  style="display: none;"
+                  class="alert alert-success text-center"
+                >
+                  Thank you! for SignUp
+                </div>
+                <form method="post" id="contactform1" class="newsletter_form">
+                  <input
+                    style="color: rgb(75, 75, 75) !important;"
+                    type="email"
+                    name="email"
+                    placeholder="Enter your mail"
+                  />
+                  <button id="s-btn1">
+                    SignUp
+                  </button>
+
+                  <button class="btn text-white py-2 position-absolute top-0 end-0 mt-2 me-2" style="background-color: #15bd29;display: none;" id="loading1">
+                    Subscribing...
+                  </button>
+                  </form>
                     <!-- <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p> -->
-                    <div class="position-relative mx-auto" style="max-width: 400px;">
+                    <!-- <div class="position-relative mx-auto" style="max-width: 400px;">
                         <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
                         <button type="button" class="btn text-white py-2 position-absolute top-0 end-0 mt-2 me-2" style="background-color: #15bd29;">SignUp</button>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -327,8 +434,102 @@
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
+    <!--contact js-->
+    <script src="js/contact.js"></script>
+    <script src="js/jquery.ajaxchimp.min.js"></script>
+    <script src="js/jquery.form.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/mail-script.js"></script>
+
+    <script src="js/main.js"></script>
+    <script>
+      $('#datepicker').datepicker({
+        iconsLibrary: 'fontawesome',
+        icons: {
+          rightIcon: '<span class="fa fa-caret-down"></span>',
+        },
+      })
+      $('#datepicker2').datepicker({
+        iconsLibrary: 'fontawesome',
+        icons: {
+          rightIcon: '<span class="fa fa-caret-down"></span>',
+        },
+      })
+    </script>
+    <script>
+      $(document).ready(function () {
+        $('#contactform').submit((e) => {
+          e.preventDefault()
+
+          const loading = document.getElementById('loading')
+          const btn = document.getElementById('s-btn')
+          const successMessage = document.getElementById('successMessage') // Updated ID
+
+          loading.style.display = 'block'
+          btn.style.display = 'none'
+
+          $.ajax({
+            url:
+              'https://script.google.com/macros/s/AKfycbyH6foigFQ6qbqTUmIFdKD7UqxGi5pgH8EmNKP2-ZwYHhmf_Qq9hfnJ1JyEBcUvRuzl/exec',
+            data: $('#contactform').serialize(),
+            method: 'post',
+            success: function (response) {
+              if (successMessage) {
+                successMessage.style.display = 'block' // Show success message
+              }
+              // Clear form fields
+              $('#contactform')[0].reset()
+
+              btn.style.display = 'block'
+              loading.style.display = 'none'
+            },
+            error: function (err) {
+              loading.style.display = 'none'
+              btn.style.display = 'block'
+              alert('Something went wrong. Please try again.')
+            },
+          })
+        })
+      })
+    </script>
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script>
+        $(document).ready(function () {
+          $('#contactform1').submit((e) => {
+            e.preventDefault()
+  
+            const loading = document.getElementById('loading1')
+            const btn = document.getElementById('s-btn1')
+            const successMessage = document.getElementById('successMessage1') // Updated ID
+  
+            loading.style.display = 'block'
+            btn.style.display = 'none'
+  
+            $.ajax({
+              url:
+                'https://script.google.com/macros/s/AKfycbyH6foigFQ6qbqTUmIFdKD7UqxGi5pgH8EmNKP2-ZwYHhmf_Qq9hfnJ1JyEBcUvRuzl/exec',
+              data: $('#contactform1').serialize(),
+              method: 'post',
+              success: function (response) {
+                if (successMessage) {
+                  successMessage.style.display = 'block' // Show success message
+                }
+                // Clear form fields
+                $('#contactform1')[0].reset()
+  
+                btn.style.display = 'block'
+                loading.style.display = 'none'
+              },
+              error: function (err) {
+                loading.style.display = 'none'
+                btn.style.display = 'block'
+                alert('Something went wrong. Please try again.')
+              },
+            })
+          })
+        })
+      </script>
 </body>
 
 </html>
